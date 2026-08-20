@@ -1,0 +1,461 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shoe Brands | Modern Ecommerce</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #f7f7f5;
+      color: #171717;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      height: 72px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 18px;
+      font-size: 20px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: 40px auto 30px;
+      padding: 0 24px;
+    }
+
+    .hero-box {
+      min-height: 300px;
+      border-radius: 24px;
+      padding: 55px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.12)),
+        url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 520px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      opacity: .85;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: .95;
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #eee;
+    }
+
+    /* Category */
+    .category {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 25px 24px 70px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .section-heading span {
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* Brand Grid */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .brand-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 26px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e9e9e9;
+      transition: .25s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.08);
+    }
+
+    .brand-logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .brand-number {
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .brand-info h3 {
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .brand-info p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    .shop {
+      display: inline-flex;
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .shop::after {
+      content: " →";
+      transition: .2s;
+    }
+
+    .brand-card:hover .shop::after {
+      margin-left: 5px;
+    }
+
+    /* Promo */
+    .promo {
+      margin-top: 28px;
+      background: #171717;
+      color: white;
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .promo h3 {
+      font-size: 24px;
+      margin-bottom: 7px;
+    }
+
+    .promo p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .button {
+      background: white;
+      color: #111;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-box {
+        padding: 40px 30px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        margin-top: 20px;
+      }
+
+      .hero-box {
+        min-height: 360px;
+        padding: 30px 24px;
+        border-radius: 18px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .promo {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+      <div class="logo">STEP&CO.</div>
+
+      <div class="nav-links">
+        <a href="#">New Arrivals</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">Sneakers</a>
+        <a href="#">Brands</a>
+      </div>
+
+      <div class="nav-icons">
+        <span>⌕</span>
+        <span>♡</span>
+        <span>🛒</span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-box">
+        <div class="hero-content">
+          <div class="eyebrow">Explore the collection</div>
+          <h1>Shoe Brands</h1>
+          <p>
+            Discover iconic footwear brands, everyday essentials,
+            performance sneakers and timeless styles—all in one place.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+
+      <div class="section-heading">
+        <div>
+          <h2>Shop by brand</h2>
+        </div>
+        <span>12 brands</span>
+      </div>
+
+      <div class="brand-grid">
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">01</span>
+          <div class="brand-logo">NIKE</div>
+          <div class="brand-info">
+            <h3>Nike</h3>
+            <p>Performance, streetwear & iconic sneakers.</p>
+            <span class="shop">Shop Nike</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">02</span>
+          <div class="brand-logo">adidas</div>
+          <div class="brand-info">
+            <h3>Adidas</h3>
+            <p>Classic silhouettes and modern sports style.</p>
+            <span class="shop">Shop Adidas</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">03</span>
+          <div class="brand-logo">PUMA</div>
+          <div class="brand-info">
+            <h3>Puma</h3>
+            <p>Bold sneakers designed for everyday movement.</p>
+            <span class="shop">Shop Puma</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">04</span>
+          <div class="brand-logo">NEW BALANCE</div>
+          <div class="brand-info">
+            <h3>New Balance</h3>
+            <p>Comfort-focused footwear with timeless appeal.</p>
+            <span class="shop">Shop New Balance</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">05</span>
+          <div class="brand-logo">CONVERSE</div>
+          <div class="brand-info">
+            <h3>Converse</h3>
+            <p>Iconic canvas sneakers and street-ready classics.</p>
+            <span class="shop">Shop Converse</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">06</span>
+          <div class="brand-logo">VANS</div>
+          <div class="brand-info">
+            <h3>Vans</h3>
+            <p>Skate-inspired shoes built for everyday style.</p>
+            <span class="shop">Shop Vans</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">07</span>
+          <div class="brand-logo">ASICS</div>
+          <div class="brand-info">
+            <h3>ASICS</h3>
+            <p>Technical running shoes and performance footwear.</p>
+            <span class="shop">Shop ASICS</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">08</span>
+          <div class="brand-logo">SKECHERS</div>
+          <div class="brand-info">
+            <h3>Skechers</h3>
+            <p>Comfortable footwear for every lifestyle.</p>
+            <span class="shop">Shop Skechers</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">09</span>
+          <div class="brand-logo">REEBOK</div>
+          <div class="brand-info">
+            <h3>Reebok</h3>
+            <p>Retro-inspired sneakers with modern comfort.</p>
+            <span class="shop">Shop Reebok</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">10</span>
+          <div class="brand-logo">TIMBERLAND</div>
+          <div class="brand-info">
+            <h3>Timberland</h3>
+            <p>Durable boots and outdoor-inspired footwear.</p>
+            <span class="shop">Shop Timberland</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">11</span>
+          <div class="brand-logo">CROCS</div>
+          <div class="brand-info">
+            <h3>Crocs</h3>
+            <p>Lightweight comfort with unmistakable style.</p>
+            <span class="shop">Shop Crocs</span>
+          </div>
+        </a>
+
+        <a href="#" class="brand-card">
+          <span class="brand-number">12</span>
+          <div class="brand-logo">FILA</div>
+          <div class="brand-info">
+            <h3>Fila</h3>
+            <p>Sport-inspired footwear with a bold retro look.</p>
+            <span class="shop">Shop Fila</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="promo">
+        <div>
+          <h3>Find your next pair.</h3>
+          <p>Explore sneakers, running shoes, boots and everyday essentials.</p>
+        </div>
+        <a href="#" class="button">View all shoes →</a>
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+```
