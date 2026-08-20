@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase - Create Account</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Left Welcome Section -->
+    <div class="welcome">
+      <h1>ShopEase</h1>
+
+      <p>
+        Create your account and enjoy a faster, easier and more
+        personalized shopping experience.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <span>✓</span>
+          <p>Exclusive member discounts</p>
+        </div>
+
+        <div class="feature">
+          <span>✓</span>
+          <p>Faster checkout</p>
+        </div>
+
+        <div class="feature">
+          <span>✓</span>
+          <p>Track all your orders</p>
+        </div>
+
+        <div class="feature">
+          <span>✓</span>
+          <p>Save your favorite products</p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Registration Section -->
+    <div class="form-section">
+
+      <h2>Create Account</h2>
+      <p class="subtitle">Join us today. It's completely free!</p>
+
+      <form id="registrationForm">
+
+        <!-- First & Last Name -->
+        <div class="form-row">
+
+          <div class="input-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="John"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Doe"
+              required
+            >
+          </div>
+
+        </div>
+
+
+        <!-- Email -->
+        <div class="input-group">
+          <label for="email">Email Address</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="john@example.com"
+            required
+          >
+        </div>
+
+
+        <!-- Phone -->
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="+91 98765 43210"
+          >
+        </div>
+
+
+        <!-- Password -->
+        <div class="input-group">
+
+          <label for="password">Password</label>
+
+          <div class="password-wrapper">
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle-password"
+              onclick="togglePassword('password', this)"
+            >
+              👁
+            </button>
+
+          </div>
+
+          <div id="passwordError" class="error">
+            Password must be at least 8 characters.
+          </div>
+
+        </div>
+
+
+        <!-- Confirm Password -->
+        <div class="input-group">
+
+          <label for="confirmPassword">Confirm Password</label>
+
+          <div class="password-wrapper">
+
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle-password"
+              onclick="togglePassword('confirmPassword', this)"
+            >
+              👁
+            </button>
+
+          </div>
+
+          <div id="confirmError" class="error">
+            Passwords do not match.
+          </div>
+
+        </div>
+
+
+        <!-- Terms -->
+        <div class="terms">
+
+          <input
+            type="checkbox"
+            id="terms"
+            required
+          >
+
+          <label for="terms">
+            I agree to the
+            <a href="#">Terms & Conditions</a>
+            and
+            <a href="#">Privacy Policy</a>.
+          </label>
+
+        </div>
+
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="register-btn"
+        >
+          Create Account
+        </button>
+
+
+        <!-- Success Message -->
+        <div
+          id="successMessage"
+          class="success"
+        >
+          Account created successfully! 🎉
+        </div>
+
+      </form>
+
+
+      <div class="login">
+        Already have an account?
+        <a href="#">Log in</a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    function togglePassword(id, button) {
+
+      const input = document.getElementById(id);
+
+      if (input.type === "password") {
+        input.type = "text";
+        button.textContent = "🙈";
+      } else {
+        input.type = "password";
+        button.textContent = "👁";
+      }
+    }
+
+
+    document
+      .getElementById("registrationForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const password =
+          document.getElementById("password").value;
+
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        const passwordError =
+          document.getElementById("passwordError");
+
+        const confirmError =
+          document.getElementById("confirmError");
+
+        const successMessage =
+          document.getElementById("successMessage");
+
+
+        passwordError.style.display = "none";
+        confirmError.style.display = "none";
+        successMessage.style.display = "none";
+
+
+        if (password.length < 8) {
+          passwordError.style.display = "block";
+          return;
+        }
+
+
+        if (password !== confirmPassword) {
+          confirmError.style.display = "block";
+          return;
+        }
+
+
+        successMessage.style.display = "block";
+
+        console.log("Registration successful");
+      });
+  </script>
+
+</body>
+</html>
